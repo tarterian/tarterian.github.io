@@ -439,7 +439,7 @@ button {
     width: 100%;
     float: left;
     font-size: 18px;
-    color: #ffffff;
+    color: #000000;
     background-color: #ffb607;
     text-align: center;
     padding: 10px 0px;
@@ -447,8 +447,8 @@ button {
     text-transform: uppercase;
 }
 .read_bt a:hover{
-    color: #ffffff;
-    background-color: #000;
+    color: #000000;
+    background-color: #ffffff;
 }
 .about_section{
     width: 100%;
@@ -695,7 +695,7 @@ a:hover {
 }
 
 .text {
-    color: #fff;
+    color: #000000;
     font-size: 16px;
     padding: 10px 20px;
     border: 2px solid #fff;
@@ -722,7 +722,7 @@ a:hover {
     float: left;
     font-size: 20px;
     text-transform: uppercase;
-    color: #ffffff;
+    color: #000000;
     position: relative;
     top: -50px;
     text-align: center;
