@@ -256,7 +256,7 @@ function startRound() {
       pauseTimer();
       if (!playerChoice) {
         const moves = ["rock", "paper", "scissors"];
-        playerChoice = moves[Math.floor(Math.random() * 3)];
+        playerChoice = moves[0];
         randomChoices++;
         highlight(playerChoice);
         setPlayerReveal(playerChoice);
