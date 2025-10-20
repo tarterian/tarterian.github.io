@@ -207,9 +207,9 @@ function generateSchedule() {
   if (MODE === "medium") {
     blocks = [makeBlock(6, 8), makeBlock(6, 8), makeBlock(6, 8)];
   } else if (MODE === "high") {
-    blocks = [makeBlock(10, 12), makeBlock(10, 12), makeBlock(10, 12)];
+    blocks = [makeBlock(12, 14), makeBlock(12, 14), makeBlock(12, 14)];
   } else if (MODE === "mixed") {
-    blocks = [makeBlock(2, 4), makeBlock(6, 8), makeBlock(10, 12)];
+    blocks = [makeBlock(2, 4), makeBlock(6, 8), makeBlock(12, 14)];
   }
   schedule = [...blocks[0], ...blocks[1], ...blocks[2]];
 }
