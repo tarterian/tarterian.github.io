@@ -250,22 +250,29 @@ function startRound() {
   roundTimer = setInterval(() => {
     countdown--;
     setText("timer", `Time left: ${countdown}s`);
-    updateProgressBar(((countdown-1)/5) * 100);
+    updateProgressBar(((countdown - 1) / 5) * 100);
 
     if (countdown <= 0) {
       pauseTimer();
-      if (!playerChoice) {
-        const moves = ["rock", "paper", "scissors"];
-        playerChoice = moves[0];
-        randomChoices++;
-        highlight(playerChoice);
-        setPlayerReveal(playerChoice);
-      }
+      updateProgressBar(0); // ensure full grey
+
       setButtonsEnabled(false);
-      runRevealAnimation();
+	  const delay = Math.floor(Math.random() * 400) + 500
+      // Add a short delay before revealing opponent's move
+      setTimeout(() => {
+        if (!playerChoice) {
+          const moves = ["rock", "paper", "scissors"];
+          playerChoice = moves[0]; // or random if preferred
+          randomChoices++;
+          highlight(playerChoice);
+          setPlayerReveal(playerChoice);
+        }
+        runRevealAnimation();
+      }, delay); 
     }
   }, 1000);
 }
+
 
 // --- Survey pause (manual resume) ---
 function pauseForSurvey() {
