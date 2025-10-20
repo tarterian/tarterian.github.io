@@ -451,6 +451,7 @@ function updateScoreboard() {
 // --- End game ---
 function endGame() {
   setButtonsEnabled(false);
+  hideResultOverlay();
   const indexCodes = { medium: 9056, high: 9057, mixed: 9058 };
   const index = indexCodes[MODE];
 
