@@ -147,12 +147,16 @@ button:disabled { opacity: 0.5; cursor: not-allowed; }
 </div>
 
 <script>
-let MODE = "medium";
 let schedule = [];
 let trial = 0, wins = 0, losses = 0, ties = 0, randomChoices = 0;
 let roundTimer = null, countdown = 5, playerChoice = null;
 let pauseTimeout = null;
 let isSurveyPaused = false;
+let modes = ["medium", "high", "mixed"];
+let indexCodes = { medium: 9056, high: 9057, mixed: 9058 };
+
+// Randomize mode when page loads
+let MODE = modes[Math.floor(Math.random() * modes.length)];
 
 // --- Admin panel toggle ---
 document.addEventListener("keydown", (e) => {
@@ -258,15 +262,15 @@ function startRound() {
 
       setButtonsEnabled(false);
 	  const delay = Math.floor(Math.random() * 400) + 500
-      // Add a short delay before revealing opponent's move
-      setTimeout(() => {
-        if (!playerChoice) {
+      if (!playerChoice) {
           const moves = ["rock", "paper", "scissors"];
           playerChoice = moves[0]; // or random if preferred
           randomChoices++;
           highlight(playerChoice);
           setPlayerReveal(playerChoice);
         }
+      // Add a short delay before revealing opponent's move
+      setTimeout(() => {
         runRevealAnimation();
       }, delay); 
     }
@@ -447,14 +451,19 @@ function updateScoreboard() {
 // --- End game ---
 function endGame() {
   setButtonsEnabled(false);
-  hideResultOverlay();
+  const indexCodes = { medium: 9056, high: 9057, mixed: 9058 };
+  const index = indexCodes[MODE];
+
   document.getElementById("summary").style.display = "block";
   document.getElementById("summary").textContent =
-    `Game Over! Final Score - Wins: ${wins}, Losses: ${losses}, Ties: ${ties}, Random Choices: ${randomChoices}`;
+    `Game Over! Final Score - Wins: ${wins}, Losses: ${losses}, Ties: ${ties}, Random Choices: ${randomChoices}, Index: ${index}`;
+
   document.getElementById("resetBtn").style.display = "inline-block";
 }
 
-// --- Reset game ---
+
+
+
 function resetGame() {
   trial = 0;
   wins = 0;
@@ -469,6 +478,7 @@ function resetGame() {
   setButtonsEnabled(true);
   document.getElementById("gameArea").style.display = "none";
   document.getElementById("startScreen").style.display = "block";
+  MODE = modes[Math.floor(Math.random() * modes.length)];
   if (pauseTimeout) { clearTimeout(pauseTimeout); pauseTimeout = null; }
 }
 
